@@ -28,23 +28,6 @@ class UserProtected(BaseModel):
     name: str
 
 
-users = [
-    User(name="admin", password="123"),
-    User(name="user", password="123"),
-]
-
-
-def get_user_by_id(user_id: int) -> Optional[User]:
-    for user in users:
-        if user.id == user_id:
-            return user
-    return None
-
-
-def update(user_id: int, new: UserUpdate) -> Optional[User]:
-    update_data = new.model_dump(exclude_unset=True)
-    stored = get_user_by_id(user_id)
-    if stored is None:
-        return stored
-    stored.__dict__.update(**update_data)
-    return stored
+class UserForCreate(BaseModel):
+    name: str
+    password: str
