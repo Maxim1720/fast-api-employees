@@ -1,8 +1,8 @@
 from fastapi import FastAPI, HTTPException
 
-from api.dto.users import User, UserUpdate, UserProtected, UserForCreate
-from models.user import get_by_id, create, User as UserDB, get_by_name, update_by_id
-from models.user import get_all, delete_by_id
+from app.api.dto.users import UserUpdate, UserProtected, UserForCreate
+from app.models.user import get_by_id, create, User as UserDB, get_by_name, update_by_id
+from app.models.user import get_all, delete_by_id
 
 app = FastAPI()
 
@@ -21,7 +21,7 @@ async def add(user: UserForCreate):
 
 @app.put("/{user_id}", response_model=UserProtected)
 async def put(user_id: int, user: UserForCreate):
-    from models.user import update_or_create
+    from app.models.user import update_or_create
     return update_or_create(user_id, user)
 
 

@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from api.users import app as users_app
+from app.api.users import app as users_app
 
 app = FastAPI()
 app.mount("/users", users_app)

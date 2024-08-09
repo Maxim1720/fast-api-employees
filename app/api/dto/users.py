@@ -13,14 +13,14 @@ def id_generator():
 
 
 class User(BaseModel):
-    id: int = Field(default_factory=id_generator)
+    id: int
     name: str
     password: str
 
 
 class UserUpdate(BaseModel):
-    name: Optional[str | None] = None
-    password: Optional[str | None] = None
+    name: Optional[str] = None
+    password: Optional[str] = None
 
 
 class UserProtected(BaseModel):

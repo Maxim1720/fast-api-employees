@@ -3,8 +3,8 @@ from typing import Optional, Type
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import Session
 
-from api.dto.users import UserForCreate, UserUpdate
-from models.base import BaseModel, db_engine
+from app.api.dto.users import UserForCreate, UserUpdate
+from app.models.base import BaseModel, db_engine
 
 
 class User(BaseModel):
