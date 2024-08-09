@@ -22,7 +22,10 @@ async def add(user: UserForCreate):
 @app.put("/{user_id}", response_model=UserProtected)
 async def put(user_id: int, user: UserForCreate):
     from app.models.user import update_or_create
-    return update_or_create(user_id, user)
+    try:
+        return update_or_create(user_id, user)
+    except RuntimeError:
+        raise HTTPException(status_code=400, detail="User with this name already exists")
 
 
 @app.patch("/{user_id}", response_model=UserProtected)

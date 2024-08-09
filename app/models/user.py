@@ -37,6 +37,8 @@ def update_or_create(user_id: int, user: UserForCreate) -> User:
     with __session as db:
         u = db.get(User, user_id)
         if u is None:
+            if get_by_name(user.name) is not None:
+                raise RuntimeError(f"User with name {user.name} already exists")
             u = create(User(**user.__dict__))
         else:
             u = update_by_id(user_id, UserUpdate(**user.__dict__))
